@@ -1,0 +1,107 @@
+[
+    {
+        "id": "3df1fdfc.572582",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "42da275e.7059c8",
+        "type": "inject",
+        "z": "3df1fdfc.572582",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "c7ccb31f.fa10a"
+            ]
+        ]
+    },
+    {
+        "id": "c7ccb31f.fa10a",
+        "type": "function",
+        "z": "3df1fdfc.572582",
+        "name": "Payload",
+        "func": "msg.headers={\n        devicekey:\"6CZwWPNowI052nTj\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "ce178c92.79a1f",
+                "5b6ff332.472eec"
+            ]
+        ]
+    },
+    {
+        "id": "ce178c92.79a1f",
+        "type": "http request",
+        "z": "3df1fdfc.572582",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D4p95bD0/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 510,
+        "y": 120,
+        "wires": [
+            [
+                "c881cb72.4cfcd8",
+                "e36130e8.4b6f1"
+            ]
+        ]
+    },
+    {
+        "id": "5b6ff332.472eec",
+        "type": "http request",
+        "z": "3df1fdfc.572582",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D4p95bD0/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 510,
+        "y": 180,
+        "wires": [
+            [
+                "c881cb72.4cfcd8",
+                "e36130e8.4b6f1"
+            ]
+        ]
+    },
+    {
+        "id": "c881cb72.4cfcd8",
+        "type": "debug",
+        "z": "3df1fdfc.572582",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 770,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "e36130e8.4b6f1",
+        "type": "http response",
+        "z": "3df1fdfc.572582",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 180,
+        "wires": []
+    }
+]
