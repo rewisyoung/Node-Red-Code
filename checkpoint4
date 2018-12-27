@@ -1,0 +1,101 @@
+[
+    {
+        "id": "ce72f186.94a2e",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "238770db.c998a",
+        "type": "http in",
+        "z": "ce72f186.94a2e",
+        "name": "",
+        "url": "/GPIO",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "87b26b2b.2e6f78"
+            ]
+        ]
+    },
+    {
+        "id": "72b94094.95ad9",
+        "type": "http response",
+        "z": "ce72f186.94a2e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 560,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d04503e9.a6158",
+        "type": "debug",
+        "z": "ce72f186.94a2e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 550,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ebe67333.2b588",
+        "type": "rpi-gpio in",
+        "z": "ce72f186.94a2e",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "a8f0919e.ba4f6"
+            ]
+        ]
+    },
+    {
+        "id": "a8f0919e.ba4f6",
+        "type": "function",
+        "z": "ce72f186.94a2e",
+        "name": "Set GPIO",
+        "func": "global.set(\"GPIO\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "d04503e9.a6158"
+            ]
+        ]
+    },
+    {
+        "id": "87b26b2b.2e6f78",
+        "type": "function",
+        "z": "ce72f186.94a2e",
+        "name": "Get GPIO",
+        "func": "msg.payload = global.get(\"GPIO\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "d04503e9.a6158",
+                "72b94094.95ad9"
+            ]
+        ]
+    }
+]
